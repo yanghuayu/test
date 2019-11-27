@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="../static/css/mui.min.css">
+	<link rel="stylesheet" href="../static/css/home.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/icons-extra.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/app.css"/>
+	<title>购物就去海淘-全部分类</title>
+	<link href="favicon.ico" type="image/x-icon" rel="icon">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+</head>
+<body>
+
+
+
+<header class="mui-bar mui-bar-nav aui-header b-line">
+	<a class=" mui-icon mui-icon-search mui-pull-left"></a>
+	<h1 class="mui-title">分类</h1>
+	<a class=" mui-icon mui-icon-chatbubble mui-pull-right"></a>
+</header>
+<div class="mui-content">
+	<div class="aui-nav">
+		<h2 class="b-line">全部分类</h2>
+		<ul class="mui-table-view mui-grid-view mui-grid-9">
+		{% for type in types %}
+			<li class="mui-table-view-cell mui-media mui-col-sm-3 b-line">
+				<a href="#" class="b-line">
+					<span class="aui-cell-img"><img src="{{type.image.url}}" alt=""></span>
+					<div class="mui-media-body">{{type.name}}</div>
+				</a>
+			</li>
+		{%endfor%}
+		</ul>
+	</div>
+
+	<div class="devider "></div>
+	<div class="aui-list t-line">
+		<h2>精品优选</h2>
+		
+		<ul class="mui-table-view mui-grid-view">
+		{%for sku in skus%}
+			<li class="mui-table-view-cell mui-media mui-col-xs-6">
+				<a href="#">
+					<img class="mui-media-object" src="{{sku.image.url}}">
+					<div class="mui-media-body">{{sku.name}}</div>
+					<div class="goods_info"> <span class="price_info">￥{{sku.price}}</span> <span class="fav_num">{{sku.sales}}人购买</span> </div>
+				</a>
+			</li>
+			{%endfor%}
+			
+		</ul>
+	</div>
+</div>
+
+
+<div style="height:50px"></div>
+<nav class="mui-bar mui-bar-tab">
+	<div class="t-line">
+		<a href="{% url 'goods:index'%}" class="aui-tab-item mui-active">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a href="{%url 'goods:category'%}" class="aui-tab-item" >
+			<span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+			<span class="mui-tab-label">分类</span>
+		</a>
+		<a class="aui-tab-item" href="{%url 'cart:car'%}">
+			<span class="mui-icon mui-icon-extra mui-icon-extra-cart"></span>
+			<span class="mui-tab-label">购物车</span>
+		</a>
+		<a class="aui-tab-item" href="{%url 'users:me'%}">
+			<span class="mui-icon mui-icon-extra mui-icon-extra-people"></span>
+			<span class="mui-tab-label">我的</span>
+		</a>
+	</div>
+
+</nav>
+<script src="js/mui.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+    var slider = mui("#slider");
+    document.getElementById("switch").addEventListener('toggle', function(e) {
+        if (e.detail.isActive) {
+            slider.slider({
+                interval: 5000
+            });
+        } else {
+            slider.slider({
+                interval: 0
+            });
+        }
+    });
+</script>
+<script>
+    mui.init();
+</script>
+
+
+</body>
+</html>
